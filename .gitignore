@@ -1,0 +1,12 @@
+.DS_Store
+.DS_Store?
+.Trashes
+Thumbs.db
+
+node_modules
+
+logs
+*.log
+
+# Built emails
+emails/*
