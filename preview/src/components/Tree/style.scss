@@ -1,0 +1,41 @@
+@import '../../styles/colors';
+
+.tree {
+	background: $negative;
+	color: $lightest-negative;
+	flex-grow: 1;
+	.file {
+		color: $lightest-negative;
+		background: transparent;
+		font-size: 1em;
+		text-align: left;
+		border: none;
+		border-bottom: 1px solid $light-negative;
+		padding: 1.25em 1.5em;
+		width: 100%;
+		display: block;
+		&:hover {
+			background: $light-negative;
+			color: #fff;
+		}
+		&-active, &:first-child {
+			background: $primary;
+			color: #fff;
+		}
+		&-folder {
+			&:before {
+				content: 'Folder: ';
+			}
+		}
+		&-email {
+			&:before {
+				content: 'Email: ';
+			}
+		}
+		&-misc {
+			&:before {
+				content: 'File: ';
+			}
+		}
+	}
+}
