@@ -22,10 +22,6 @@ class File {
 		return `${this.dir}/${this.name}`;
 	}
 
-	getData() {
-		return this;
-	}
-
 }
 
 module.exports = File;
