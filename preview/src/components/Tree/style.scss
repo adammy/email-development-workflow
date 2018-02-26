@@ -2,40 +2,50 @@
 
 .tree {
 	background: $negative;
-	color: $lightest-negative;
-	flex-grow: 1;
+	color: $light-negative;
+	flex: 1;
+	padding-top: 2em;
 	.file {
-		color: $lightest-negative;
+		color: $light-negative;
 		background: transparent;
 		font-size: 1em;
+		font-family: 'Roboto', Helvetica, Arial, sans-serif;
 		text-align: left;
 		border: none;
-		border-bottom: 1px solid $light-negative;
-		padding: 1.25em 1.5em;
+		padding: 0.3em 1.5em;
 		width: 100%;
 		display: block;
+		outline: none;
 		&:hover {
-			background: $light-negative;
-			color: #fff;
+			color: $lighter-negative;
 		}
 		&-active, &:first-child {
-			background: $primary;
-			color: #fff;
+			color: $green;
 		}
+
 		&-folder {
 			&:before {
-				content: 'Folder: ';
+				@extend .fa-icon;
+	    	content: '\f07b';
 			}
 		}
 		&-email {
 			&:before {
-				content: 'Email: ';
+				@extend .fa-icon;
+	    	content: '\f0e0';
 			}
 		}
 		&-misc {
 			&:before {
-				content: 'File: ';
+				@extend .fa-icon;
+	    	content: '\f15b';
 			}
 		}
 	}
+}
+
+.fa-icon {
+	font-family: 'Font Awesome 5 Free';
+	width: 1.75em;
+	display: inline-block;
 }
