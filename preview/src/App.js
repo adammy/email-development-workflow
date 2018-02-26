@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Tree from './components/Tree';
+import Preview from './components/Preview';
 import './App.css';
 
 class App extends Component {
@@ -91,8 +92,7 @@ class App extends Component {
 		return (
 			<div className="app">
 				<Tree files={this.state.files} />
-				<div className="preview">
-				</div>
+				<Preview />
 			</div>
 		);
 	}

@@ -19,10 +19,9 @@
 		&:hover {
 			color: $lighter-negative;
 		}
-		&-active, &:first-child {
+		&-active {
 			color: $green;
 		}
-
 		&-folder {
 			&:before {
 				@extend .fa-icon;
