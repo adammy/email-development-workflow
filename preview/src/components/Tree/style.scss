@@ -4,6 +4,7 @@
 	background: $negative;
 	color: $light-negative;
 	flex: 1;
+	border-right: 1px solid #000;
 	padding-top: 2em;
 	.file {
 		color: $light-negative;
@@ -19,8 +20,8 @@
 		&:hover {
 			color: $lighter-negative;
 		}
-		&-active {
-			color: $green;
+		&-active, &:first-child {
+			color: $primary;
 		}
 		&-folder {
 			&:before {
@@ -47,4 +48,7 @@
 	font-family: 'Font Awesome 5 Free';
 	width: 1.75em;
 	display: inline-block;
+	-moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }

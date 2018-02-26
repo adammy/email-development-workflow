@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 
-const Tree = ({ files = [] }) => {
+const Tree = ({ files = [], loading = true }) => {
 
 	function showFile(file) {
 		if (file.subject) { // html file
@@ -29,7 +29,7 @@ const Tree = ({ files = [] }) => {
 
 	return (
 		<div className="tree">
-			{files.map(file => showFile(file))}
+			{!loading && files.map(file => showFile(file))}
 		</div>
 	);
 

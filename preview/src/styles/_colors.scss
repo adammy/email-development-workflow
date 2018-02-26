@@ -1,8 +1,9 @@
-$primary: #28b;
+$red: #f44336;
+$yellow: #ce8;
+$green: #2a5;
+$blue: #28b;
+
+$primary: $yellow;
 $negative: #282828;
 $light-negative: lighten($negative, 50%);
 $lighter-negative: lighten($negative, 75%);
-$red: #f44336;
-$yellow: #ce8;
-$green: #4d6;
-$blue: #28b;

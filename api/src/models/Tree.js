@@ -19,11 +19,38 @@ class Tree {
 			// filter out files/folders using filesToIgnore prop
 			.filter(file => !this.filesToIgnore.includes(file))
 
+			.sort((a, b) => {
+
+				const aPath = path.join(dir, a),
+					bPath = path.join(dir, b),
+					aIsDir = fs.statSync(aPath).isDirectory(),
+					bIsDir = fs.statSync(bPath).isDirectory();
+
+				if (aIsDir && bIsDir) {
+					if (a < b) {
+						return -1;
+					} else {
+						return 1;
+					}
+				} else if (aIsDir) {
+					return 1;
+				} else if (bIsDir) {
+					return -1;
+				} else {
+					if (a < b) {
+						return -1;
+					} else {
+						return 1;
+					}
+				}
+
+			})
+
 			.forEach(file => {
 
-				const filePath = path.join(dir, file);
-				const isDir = fs.statSync(filePath).isDirectory();
-				const isEmail = path.extname(filePath) === '.html';
+				const filePath = path.join(dir, file),
+					isDir = fs.statSync(filePath).isDirectory(),
+					isEmail = path.extname(filePath) === '.html';
 
 				// return obj with key of folder name and recurisively run getTree() on that folder
 				if (isDir) {
