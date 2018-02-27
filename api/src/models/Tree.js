@@ -27,17 +27,24 @@ class Tree {
 					aIsDir = fs.statSync(aPath).isDirectory(),
 					bIsDir = fs.statSync(bPath).isDirectory();
 
+				// if both dirs, sort normally
 				if (aIsDir && bIsDir) {
 					if (a < b) {
 						return -1;
 					} else {
 						return 1;
 					}
-				} else if (aIsDir) {
+				}
+				// if a is a dir and b is not, a moves before
+				else if (aIsDir) {
 					return -1;
-				} else if (bIsDir) {
+				}
+				// if b is a dir and a is not, a moves after
+				else if (bIsDir) {
 					return 1;
-				} else {
+				}
+				// neither are dirs, sort normally
+				else {
 					if (a < b) {
 						return -1;
 					} else {
