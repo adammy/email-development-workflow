@@ -19,6 +19,7 @@ class Tree {
 			// filter out files/folders using filesToIgnore prop
 			.filter(file => !this.filesToIgnore.includes(file))
 
+			// sort files; folders take precedence, otherwise sort by name
 			.sort((a, b) => {
 
 				const aPath = path.join(dir, a),
@@ -33,9 +34,9 @@ class Tree {
 						return 1;
 					}
 				} else if (aIsDir) {
-					return 1;
-				} else if (bIsDir) {
 					return -1;
+				} else if (bIsDir) {
+					return 1;
 				} else {
 					if (a < b) {
 						return -1;
