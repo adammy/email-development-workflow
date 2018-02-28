@@ -15,7 +15,10 @@ const generateTree = (dir, filesToIgnore = ['.DS_Store', 'Thumbs.db']) => {
 			fileObj.name = file;
 			fileObj.fullPath = path.join(dir, file);
 			fileObj.isDir = fs.statSync(fileObj.fullPath).isDirectory();
-			fileObj.isEmail = path.extname(fileObj.fullPath) === '.html';
+			if (!fileObj.isDir) {
+				fileObj.ext = path.extname(fileObj.fullPath);
+				fileObj.ext = fileObj.ext.substring(1, fileObj.ext.length);
+			}
 			return fileObj;
 		})
 
@@ -28,7 +31,7 @@ const generateTree = (dir, filesToIgnore = ['.DS_Store', 'Thumbs.db']) => {
 		});
 
 		return tree;
-		
+
 }
 
 module.exports = generateTree;

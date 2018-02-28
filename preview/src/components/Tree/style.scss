@@ -3,47 +3,89 @@
 .tree {
 	background: $negative;
 	color: $light-negative;
-	flex: 1;
 	border-right: 1px solid #000;
-	padding-top: 2em;
+	padding: 1.5em;
+	flex: 1;
+	overflow: scroll;
 	ul {
-		padding: 0 2em;
+		padding: 0;
 		margin: 0;
 		list-style-type: none;
-		.file {
-			color: $light-negative;
-			padding: 0.3em 0;
-			&:hover {
-				color: $lighter-negative;
-			}
-			&-active, &:first-child {
-				color: $primary;
-			}
-			&-folder {
-				&:before {
-					@extend .fa-icon;
-		    	content: '\f07b';
-				}
-			}
-			&-email {
-				&:before {
-					@extend .fa-icon;
-		    	content: '\f0e0';
-				}
-			}
-			&-misc {
-				&:before {
-					@extend .fa-icon;
-		    	content: '\f15b';
+		ul {
+			padding-left: 1em;
+		}
+		li {
+			&.collapsed {
+				ul {
+					display: none;
 				}
 			}
 		}
 	}
 }
 
+.file {
+	background: transparent;
+	color: $light-negative;
+	font-size: 1em;
+	border: none;
+	padding: 0.3em 0;
+	outline: none;
+	&:hover {
+		color: $lighter-negative;
+	}
+	&-active {
+		color: $primary;
+	}
+	&:before {
+		@extend .fa-icon;
+		content: '\f15b';
+	}
+	&-folder {
+		&:before {
+			content: '\f07b';
+		}
+		&-open {
+			&:before {
+				content: '\f07c';
+			}
+		}
+	}
+	&-html, &-css, &-js {
+		&:before {
+			content: '\f121';
+		}
+	}
+	&-jpg, &-gif, &-png, &-tif, &-svg {
+		&:before {
+			content: '\f03e';
+		}
+	}
+	&-pdf {
+		&:before {
+			content: '\f1c1';
+		}
+	}
+	&-txt {
+		&:before {
+			content: '\f15c';
+		}
+	}
+	&-mp4, &-webm {
+		&:before {
+			content: '\f03d';
+		}
+	}
+	&-mp3 {
+		&:before {
+			content: '\f028';
+		}
+	}
+}
+
 .fa-icon {
 	font-family: 'Font Awesome 5 Free';
-	width: 1.75em;
+	width: 2em;
 	display: inline-block;
 	-moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;

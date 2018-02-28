@@ -10,8 +10,9 @@ app.use('/', express.static('preview/public'));
 app.use('/emails', express.static('emails/build'));
 
 // serve json that displays the file tree for built emails
-app.get('/api/tree', (req, res) => {
-	res.json(generateTree('emails/build'));
+app.get('/api/tree/', (req, res) => {
+	const path = req.query.path || 'emails/build';
+	res.json(generateTree(path));
 });
 
 app.listen(3000, () => console.log(`App listening on port 3000`));

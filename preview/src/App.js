@@ -5,30 +5,11 @@ import './App.css';
 
 class App extends Component {
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			files: []
-		};
-	}
-
-	componentDidMount() {
-		fetch('api/tree')
-			.then(response => {
-				return response.json();
-			})
-			.then(json => {
-				this.setState({
-					files: json
-				});
-			});
-	}
-
 	render() {
 		return (
 			<div className="app">
-				<Tree files={this.state.files} />
-				<Preview />
+				<Tree />
+				<Preview email={false} />
 			</div>
 		);
 	}
