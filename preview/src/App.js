@@ -8,8 +8,7 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			files: [],
-			loadingFiles: true
+			files: []
 		};
 	}
 
@@ -20,8 +19,7 @@ class App extends Component {
 			})
 			.then(json => {
 				this.setState({
-					files: json,
-					loadingFiles: false
+					files: json
 				});
 			});
 	}
@@ -29,7 +27,7 @@ class App extends Component {
 	render() {
 		return (
 			<div className="app">
-				<Tree files={this.state.files} loading={this.state.loadingFiles} />
+				<Tree files={this.state.files} />
 				<Preview />
 			</div>
 		);

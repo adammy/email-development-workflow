@@ -6,39 +6,36 @@
 	flex: 1;
 	border-right: 1px solid #000;
 	padding-top: 2em;
-	.file {
-		color: $light-negative;
-		background: transparent;
-		font-size: 1em;
-		font-family: 'Roboto', Helvetica, Arial, sans-serif;
-		text-align: left;
-		border: none;
-		padding: 0.3em 1.5em;
-		width: 100%;
-		display: block;
-		outline: none;
-		&:hover {
-			color: $lighter-negative;
-		}
-		&-active, &:first-child {
-			color: $primary;
-		}
-		&-folder {
-			&:before {
-				@extend .fa-icon;
-	    	content: '\f07b';
+	ul {
+		padding: 0 2em;
+		margin: 0;
+		list-style-type: none;
+		.file {
+			color: $light-negative;
+			padding: 0.3em 0;
+			&:hover {
+				color: $lighter-negative;
 			}
-		}
-		&-email {
-			&:before {
-				@extend .fa-icon;
-	    	content: '\f0e0';
+			&-active, &:first-child {
+				color: $primary;
 			}
-		}
-		&-misc {
-			&:before {
-				@extend .fa-icon;
-	    	content: '\f15b';
+			&-folder {
+				&:before {
+					@extend .fa-icon;
+		    	content: '\f07b';
+				}
+			}
+			&-email {
+				&:before {
+					@extend .fa-icon;
+		    	content: '\f0e0';
+				}
+			}
+			&-misc {
+				&:before {
+					@extend .fa-icon;
+		    	content: '\f15b';
+				}
 			}
 		}
 	}
