@@ -8,6 +8,8 @@ class Folder extends Component {
 		this.state = {
 			files: []
 		};
+		this.collapseFolder = this.collapseFolder.bind(this);
+		this.openFile = this.openFile.bind(this);
 	}
 
 	getFiles(dir) {
@@ -15,8 +17,8 @@ class Folder extends Component {
 			.then(response => response.json())
 			.then(json => {
 				json.map(obj => {
-					obj.active = false;
-					obj.collapsed = true;
+					if (obj.isDir) obj.collapsed = true;
+					if (obj.ext === 'html') obj.active = false;
 					return obj;
 				});
 				this.setState({
@@ -25,17 +27,44 @@ class Folder extends Component {
 			});
 	}
 
+	collapseFolder(path, collapsed) {
+		let files = Object.assign({}, this.state).files;
+		files.map(file => {
+			if (file.fullPath === path) {
+				file.collapsed = !collapsed;
+			}
+			return file;
+		});
+		this.setState({ files });
+	}
+
+	openFile(path) {
+		console.log(path);
+	}
+
 	renderFolder(files) {
 		return files.map(file => {
 			if (file.isDir) {
 				return (
 					<li key={file.fullPath} className={file.collapsed ? 'collapsed' : ''}>
-						<button className={file.collapsed ? 'file file-folder' : 'file file-folder file-folder-open'}>{file.name}</button>
+						<button
+							className={file.collapsed ? 'file file-folder' : 'file file-folder file-folder-open'}
+							onClick={() => this.collapseFolder(file.fullPath, file.collapsed)}>
+								{file.name}
+						</button>
 						<Folder dir={file.fullPath} />
 					</li>
 				);
 			} else {
-				return <li key={file.fullPath}><button className={`file file-${file.ext}`}>{file.name}</button></li>;
+				return (
+					<li key={file.fullPath}>
+						<button
+							className={`file file-${file.ext}`}
+							onClick={() => this.openFile(file.fullPath)}>
+								{file.name}
+						</button>
+					</li>
+				);
 			}
 		});
 	}

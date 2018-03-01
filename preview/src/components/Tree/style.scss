@@ -27,7 +27,8 @@
 .file {
 	background: transparent;
 	color: $light-negative;
-	font-size: 1em;
+	font-size: 0.93em;
+	text-align: left;
 	border: none;
 	padding: 0.3em 0;
 	outline: none;
@@ -38,7 +39,12 @@
 		color: $primary;
 	}
 	&:before {
-		@extend .fa-icon;
+		font-family: 'Font Awesome 5 Free';
+		width: 2em;
+		display: inline-block;
+		-moz-osx-font-smoothing: grayscale;
+	  -webkit-font-smoothing: antialiased;
+	  text-rendering: optimizeLegibility;
 		content: '\f15b';
 	}
 	&-folder {
@@ -81,13 +87,4 @@
 			content: '\f028';
 		}
 	}
-}
-
-.fa-icon {
-	font-family: 'Font Awesome 5 Free';
-	width: 2em;
-	display: inline-block;
-	-moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
 }
