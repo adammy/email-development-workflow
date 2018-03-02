@@ -7,7 +7,7 @@ const express = require('express'),
 app.use('/', express.static('preview/public'));
 
 // serving emails that are built with the workflow
-app.use('/emails', express.static('emails/build'));
+app.use('/emails/build/', express.static('emails/build'));
 
 // serve json that displays the file tree for built emails
 app.get('/api/tree', (req, res) => {

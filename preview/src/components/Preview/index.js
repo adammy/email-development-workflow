@@ -2,20 +2,21 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 
-const Preview = ({ email }) => {
+const Preview = ({ file = {} }) => {
 
 	return (
 		<div className="preview">
-			{!email && <p>No active email</p>}
+			{!file.name && <p>No active email</p>}
+			{file.name &&
+				<iframe src={file.fullPath} width="100%" height="100%" />
+			}
 		</div>
 	);
 
 };
 
 Preview.propTypes = {
-	subject: PropTypes.string,
-	preview: PropTypes.string,
-	path: PropTypes.string
+	file: PropTypes.object
 };
 
 export default Preview;

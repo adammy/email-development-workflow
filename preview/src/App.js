@@ -9,9 +9,10 @@ class App extends Component {
 		super(props);
 		this.state = {
 			files: [],
-			activeFile: false
+			activeFile: {}
 		};
 		this.collapseFolder = this.collapseFolder.bind(this);
+		this.setActiveFile = this.setActiveFile.bind(this);
 	}
 
 	componentWillMount() {
@@ -54,22 +55,23 @@ class App extends Component {
 	collapseFolder(path, isCollapsed) {
 		let files = Object.assign({}, this.state).files;
 		files = this.setCollapsed(files, isCollapsed, path);
-		// files = files.map(file => {
-		// 	if (file.fullPath === path) {
-		// 		file.collapsed = !isCollapsed;
-		// 	}
-		// 	return file;
-		// });
 		this.setState({ files });
+	}
+
+	setActiveFile(activeFile) {
+		this.setState({ activeFile });
 	}
 
 	render() {
 		return (
 			<div className="app">
 				<div className="tree">
-					<Tree files={this.state.files} onFolderClick={this.collapseFolder} />
+					<Tree
+						files={this.state.files}
+						onFolderClick={this.collapseFolder}
+						onFileClick={this.setActiveFile} />
 				</div>
-				<Preview email={this.state.email} />
+				<Preview file={this.state.activeFile} />
 			</div>
 		);
 	}
