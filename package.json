@@ -6,6 +6,7 @@
   "dependencies": {
     "cheerio": "^1.0.0-rc.2",
     "express": "^4.16.2",
+    "node-file-tree": "^1.0.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0"
   },
