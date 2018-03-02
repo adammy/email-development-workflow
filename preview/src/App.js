@@ -9,53 +9,66 @@ class App extends Component {
 		super(props);
 		this.state = {
 			files: [],
-			email: false
+			activeFile: false
 		};
+		this.collapseFolder = this.collapseFolder.bind(this);
 	}
 
 	componentWillMount() {
 		this.getFiles('emails/build');
 	}
 
-	getFiles(dir) {
-		fetch(`api/tree?path=${dir}`)
-			.then(res => res.json())
-			.then(files => {
-				files.map(file => {
-					if (file.isDir) file.collapsed = true;
-					if (file.ext === 'html') file.active = true;
-					return file;
-				});
-				this.setState({ files });
-			})
+	setCollapsed(files, isCollapsed = false, path = null) {
+		return files.map(file => {
+			if (file.isDir) {
+
+				// if path is provided, only apply func to folder with matching path
+				if (path && file.fullPath == path) {
+					file.collapsed = !isCollapsed;
+				}
+
+				// if no path is provided, apply func to every folder
+				if (!path) {
+					file.collapsed = !isCollapsed;
+				}
+
+				// if folder has additional files, recursively run func on those files too
+				if (file.files.length > 0) {
+					file.files = this.setCollapsed(file.files, isCollapsed, path);
+				}
+
+			}
+			return file;
+		});
 	}
 
-	renderFiles(files) {
-		files.map(file => {
-			if (file.isDir) {
-					return (
-						<li key={file.fullPath} className={file.collapsed ? 'collapsed' : ''}>
-							<button className={file.collapsed ? 'file file-folder' : 'file file-folder file-folder-open'}>
-								{file.name}
-							</button>
-						</li>
-					);
-				} else {
-					return (
-						<li key={file.fullPath}>
-							<button className={`file file-${file.ext}`}>
-								{file.name}
-							</button>
-						</li>
-					);
-				}
-		});
+	getFiles(path) {
+		fetch(`api/tree?path=${path}`)
+			.then(res => res.json())
+			.then(files => {
+				files = this.setCollapsed(files);
+				this.setState({ files });
+			});
+	}
+
+	collapseFolder(path, isCollapsed) {
+		let files = Object.assign({}, this.state).files;
+		files = this.setCollapsed(files, isCollapsed, path);
+		// files = files.map(file => {
+		// 	if (file.fullPath === path) {
+		// 		file.collapsed = !isCollapsed;
+		// 	}
+		// 	return file;
+		// });
+		this.setState({ files });
 	}
 
 	render() {
 		return (
 			<div className="app">
-				<Tree files={this.state.files} />
+				<div className="tree">
+					<Tree files={this.state.files} onFolderClick={this.collapseFolder} />
+				</div>
 				<Preview email={this.state.email} />
 			</div>
 		);
