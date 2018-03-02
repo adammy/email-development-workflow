@@ -8,7 +8,7 @@ const Preview = ({ file = {} }) => {
 		<div className="preview">
 			{!file.name && <p>No active email</p>}
 			{file.name &&
-				<iframe src={file.fullPath} width="100%" height="100%" />
+				<iframe src={`http:\/\/localhost:3001/${file.fullPath}`} width="100%" height="100%" />
 			}
 		</div>
 	);
